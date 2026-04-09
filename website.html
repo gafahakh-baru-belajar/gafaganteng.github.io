@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Saya</title>
+
+<style>
+body {
+    margin:0;
+    font-family: Arial;
+    background:#0f172a;
+    color:white;
+}
+
+#nav {
+    background:#020617;
+    padding:10px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.section {
+    padding:20px;
+}
+
+#chat {
+    height:200px;
+    overflow:auto;
+    border:1px solid #555;
+    padding:10px;
+}
+
+#inputBox {
+    display:flex;
+}
+
+input {
+    flex:1;
+    padding:10px;
+}
+
+button {
+    padding:10px;
+    background:#22c55e;
+    border:none;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div id="nav">🌐 Website Saya</div>
+
+<div class="section">
+<h2>👋 Tentang Saya</h2>
+<p>Saya sedang belajar coding 😎</p>
+</div>
+
+<div class="section">
+<h2>🤖 AI Chat</h2>
+
+<div id="chat"></div>
+
+<div id="inputBox">
+<input id="input" placeholder="Tanya sesuatu...">
+<button onclick="kirim()">Kirim</button>
+</div>
+
+</div>
+
+<script>
+function tambah(text){
+    let chat = document.getElementById("chat");
+    chat.innerHTML += "<p>" + text + "</p>";
+    chat.scrollTop = chat.scrollHeight;
+}
+
+function ai(input){
+    input = input.toLowerCase();
+
+    if(input.includes("halo")) return "Halo juga! 😄";
+    if(input.includes("karnivora")) return "Karnivora adalah hewan pemakan daging 🥩";
+    if(input.includes("nama")) return "Saya AI sederhana 🤖";
+
+    return "Saya belum mengerti 😅";
+}
+
+function kirim(){
+    let input = document.getElementById("input");
+    let text = input.value;
+
+    if(text == "") return;
+
+    tambah("🧑: " + text);
+    input.value = "";
+
+    setTimeout(()=>{
+        tambah("🤖: " + ai(text));
+    }, 500);
+}
+</script>
+
+</body>
+</html>
